@@ -9,7 +9,9 @@ server.on("connection", (socket) => {
 
   socket.on("data", (data) => {
     console.log(data);
-    socket.write(`data sent: ${data}`);
+    bufferString = "0x01";
+    let buffer = Buffer.from(bufferString, "utf8");
+    socket.write(buffer);
   });
   socket.once("close", () => {
     console.log(`The connection from %s has been closed`, remoteAddress);
