@@ -6,12 +6,16 @@ const server = net.createServer();
 server.on("connection", (socket) => {
   const remoteAddress = `${socket.remoteAddress}:${socket.remotePort}`;
   console.log("A new connection is made at: %s", remoteAddress);
+  const bytes = new Uint8Array([0x01]);
+  let data_iterator = 0;
 
   socket.on("data", (data) => {
+    if (data_iterator === 0) {
+      socket.write(bytes);
+      data_iterator++;
+      console.log(`Data send: ${data_iterator}`);
+    }
     console.log(data);
-    bufferString = "0x01";
-    let buffer = Buffer.from(bufferString, "utf8");
-    socket.write(buffer);
   });
   socket.once("close", () => {
     console.log(`The connection from %s has been closed`, remoteAddress);
