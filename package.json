@@ -2,10 +2,10 @@
   "name": "yes",
   "version": "1.0.0",
   "description": "TCP IP Connection",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "node index.js",
-    "start": "node index.js"
+    "test": "node server.js",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
