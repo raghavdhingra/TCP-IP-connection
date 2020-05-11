@@ -1,10 +1,10 @@
 const converter = require("hex2dec");
+const AVLDataParser = require("./AVLDataParser");
 
 const dataPacketParser = (data) => {
   let obj = {};
   let total_data_length = data.length;
   console.log(`Total Length: ${total_data_length}`);
-  console.log(data);
   let four_zeroes = converter.hexToDec(Buffer.from(data).toString("hex", 0, 4));
   let data_field_length = converter.hexToDec(
     Buffer.from(data).toString("hex", 4, 8)
@@ -14,9 +14,7 @@ const dataPacketParser = (data) => {
     Buffer.from(data).toString("hex", 9, 10)
   );
 
-  let avl_data = converter.hexToDec(
-    Buffer.from(data).toString("hex", 10, total_data_length - 5)
-  );
+  let avl_data = AVLDataParser(data);
 
   let data_2_number = converter.hexToDec(
     Buffer.from(data).toString(
