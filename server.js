@@ -18,33 +18,10 @@ server.on("connection", (socket) => {
       socket.write(response);
     } else {
       let data_packet = dataPacketParser(data);
+      socket.write(data.response);
       console.log(data_packet);
+      console.log(`Data Sent: ${data_packet.response}`);
     }
-    // } else if (data.length > 20) {
-    //   console.log(
-    //     "4 Zero: " + converter.hexToDec(Buffer.from(data).toString("hex", 0, 4))
-    //   );
-    //   console.log(
-    //     "Data Length: " +
-    //       converter.hexToDec(Buffer.from(data).toString("hex", 4, 8))
-    //   );
-    //   console.log(
-    //     "Codec ID: " +
-    //       converter.hexToDec(Buffer.from(data).toString("hex", 8, 9))
-    //   );
-    //   console.log(
-    //     "No of Records: " +
-    //       converter.hexToDec(Buffer.from(data).toString("hex", 9, 10))
-    //   );
-    //   let bytes = new Uint8Array([
-    //     0,
-    //     0,
-    //     0,
-    //     Buffer.from(data).toString("hex", 9, 10),
-    //   ]);
-    //   socket.write(bytes);
-    //   console.log(`Data send: ` + bytes);
-    // }
   });
 
   socket.once("close", () => {

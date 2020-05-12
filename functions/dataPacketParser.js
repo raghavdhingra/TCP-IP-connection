@@ -34,6 +34,12 @@ const dataPacketParser = (data) => {
     avl_data: avl_data,
     data_2_number: data_2_number,
     crc_16: crc_16,
+    response: new Uint8Array([
+      0,
+      0,
+      0,
+      Buffer.from(data).toString("hex", 9, 10),
+    ]),
   };
   return obj;
 };
