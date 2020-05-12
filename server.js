@@ -20,6 +20,11 @@ server.on("connection", (socket) => {
       let data_packet = dataPacketParser(data);
       socket.write(data_packet.response);
       console.log(data_packet);
+
+      console.log(data_packet.avl_data.io_element.one_byte_element);
+      console.log(data_packet.avl_data.io_element.two_bytes_element);
+      console.log(data_packet.avl_data.io_element.four_bytes_element);
+      console.log(data_packet.avl_data.io_element.eight_bytes_element);
       console.log(`Data Sent: ${data_packet.response}`);
     }
   });

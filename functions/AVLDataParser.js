@@ -1,5 +1,6 @@
 const converter = require("hex2dec");
 const gpsParser = require("./gpsParser");
+const IOParser = require("./IOParser");
 
 const AVLDataParser = (data) => {
   let obj = {};
@@ -10,9 +11,7 @@ const AVLDataParser = (data) => {
     Buffer.from(data).toString("hex", 18, 19)
   );
   obj["gps_element"] = gpsParser(data);
-  obj["io_element"] = converter.hexToDec(
-    Buffer.from(data).toString("hex", 34, data.length - 5)
-  );
+  obj["io_element"] = IOParser(data);
   return obj;
 };
 
