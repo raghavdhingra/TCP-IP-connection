@@ -18,7 +18,7 @@ server.on("connection", (socket) => {
       socket.write(response);
     } else {
       let data_packet = dataPacketParser(data);
-      socket.write(data.response);
+      socket.write(data_packet.response);
       console.log(data_packet);
       console.log(`Data Sent: ${data_packet.response}`);
     }
