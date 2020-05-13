@@ -18,10 +18,12 @@ const AVLDataParser = (data, data_1_number) => {
     initial_length++;
 
     gps_element = gpsParser(data, initial_length);
-    obj["gps_element"] = gpsParser(data, initial_length);
+    obj["gps_element"] = gps_element.data;
+    initial_length = gps_element.num;
 
     io_element = IOParser(data, initial_length);
-    obj["io_element"] = IOParser(data, initial_length);
+    obj["io_element"] = io_element.data;
+    initial_length = io_element.num;
 
     AVL_Array.push(obj);
   }

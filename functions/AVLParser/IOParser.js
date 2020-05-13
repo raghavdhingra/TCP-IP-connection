@@ -1,16 +1,18 @@
 const hex_to_dec = require("../hexToDec");
 
-const IOParser = (data) => {
+const IOParser = (data, initial_num) => {
   let obj = {};
-  let event_id = hex_to_dec(data, 34, 35);
-  let total_io_element = hex_to_dec(data, 35, 36);
+  let event_id = hex_to_dec(data, initial_num, initial_num + 1);
+  initial_num++;
+  let total_io_element = hex_to_dec(data, initial_num, initial_num + 1);
+  initial_num++; // initial_num = 36
 
   // IO ELEMENTS
 
   let secondary_obj = {};
   let io_key = "";
   let io_value = 0;
-  let initial_length = 36;
+  let initial_length = initial_num;
 
   // One BYTE ELMENTS
   let elment_one_array = [];
@@ -109,7 +111,12 @@ const IOParser = (data) => {
       elements: elment_eight_array,
     },
   };
-  return obj;
+
+  let io_element = {
+    data: obj,
+    num: initial_length,
+  };
+  return io_element;
 };
 
 module.exports = IOParser;
