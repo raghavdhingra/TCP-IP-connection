@@ -1,5 +1,5 @@
 const net = require("net");
-const IMEI_parser = require("./functions/IMEI_parser");
+const IMEI_parser = require("./functions/IMEIParser/IMEI_parser");
 const dataPacketParser = require("./functions/dataPacketParser");
 
 const server = net.createServer();
@@ -21,10 +21,7 @@ server.on("connection", (socket) => {
       socket.write(data_packet.response);
       console.log(data_packet);
 
-      console.log(data_packet.avl_data.io_element.one_byte_element);
-      console.log(data_packet.avl_data.io_element.two_bytes_element);
-      console.log(data_packet.avl_data.io_element.four_bytes_element);
-      console.log(data_packet.avl_data.io_element.eight_bytes_element);
+      console.log(data_packet.data.avl_data);
       console.log(`Data Sent: ${data_packet.response}`);
     }
   });
